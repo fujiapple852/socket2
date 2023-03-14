@@ -173,6 +173,11 @@ impl SockAddr {
         ptr::addr_of!(self.storage).cast()
     }
 
+    /// Returns a mutable raw pointer to the address.
+    pub fn as_mut_ptr(&mut self) -> *mut sockaddr {
+        ptr::addr_of_mut!(self.storage).cast()
+    }
+
     /// Returns true if this address is in the `AF_INET` (IPv4) family, false otherwise.
     pub const fn is_ipv4(&self) -> bool {
         self.storage.ss_family == AF_INET as sa_family_t
